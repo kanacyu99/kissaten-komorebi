@@ -4,26 +4,268 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>喫茶こもれび</title>
+  <meta name="description" content="喫茶こもれび。昔ながらの味と、くつろぎの時間を。">
+  <title>喫茶こもれび | 昔ながらの味と、くつろぎの時間。</title>
+
   <style>
-    body {
-      background-color: #F5EBDD;
-      color: #5C4033;
-      font-family: sans-serif;
-      text-align: center;
-      padding: 40px 20px;
+    * {
+      box-sizing: border-box;
     }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background-color: #F5EBDD;
+      color: #333333;
+      font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 42px 33px 70px;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      color: #5C4033;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
     h1 {
       font-size: 28px;
+      margin: 0 0 12px;
     }
+
+    h2 {
+      font-size: 24px;
+      margin: 0 0 18px;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin: 18px 0 8px;
+    }
+
     p {
       font-size: 16px;
+      margin: 0;
+    }
+
+    .subtitle {
+      margin-bottom: 24px;
+    }
+
+    .photo {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    section {
+      margin-top: 42px;
+    }
+
+    .hero {
+      margin-top: 0;
+    }
+
+    .description {
       color: #333333;
+      line-height: 1.6;
+    }
+
+    .info {
+      line-height: 1.8;
+    }
+
+    .address {
+      margin-top: 16px;
+    }
+
+    .map-placeholder {
+      background-color: #D9D9D9;
+      color: #555555;
+      height: 200px;
+      border-radius: 8px;
+      margin-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .map-button {
+      display: block;
+      max-width: 280px;
+      margin: 20px auto 0;
+      padding: 12px;
+      border-radius: 8px;
+      background-color: #5C4033;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .map-button:hover {
+      background-color: #795548;
+    }
+
+    .map-button:focus-visible {
+      outline: 3px solid #A77B53;
+      outline-offset: 3px;
+    }
+
+    .map-note {
+      font-size: 12px;
+      color: #666666;
+      margin-top: 10px;
+    }
+
+    footer {
+      margin-top: 65px;
+      padding-top: 22px;
+      border-top: 1px solid #D5C5B4;
+      color: #5C4033;
+      font-size: 13px;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 48px 33px 55px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      h2, h3 {
+        font-size: 24px;
+      }
+
+      section {
+        margin-top: 40px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <h1>喫茶こもれび</h1>
-  <p>昔ながらの味と、くつろぎの時間。</p>
+  <main class="container">
+
+    <!-- 店名・メイン写真 -->
+    <header class="hero">
+      <h1>喫茶こもれび</h1>
+      <p class="subtitle">
+        昔ながらの味と、くつろぎの時間。
+      </p>
+      <img
+        class="photo"
+        src="images/①懐かしの喫茶店、琥珀色のひととき.png"
+        alt="落ち着いた雰囲気のレトロ喫茶店"
+      >
+    </header>
+
+    <!-- 季節のおすすめ -->
+    <section id="seasonal">
+      <h2>季節のおすすめ</h2>
+
+      <img
+        class="photo"
+        src="images/②コーヒーとぷりん.png"
+        alt="コーヒーとプリンのセット"
+        loading="lazy"
+      >
+
+      <h3>季節のプリンセット</h3>
+      <p class="description">
+        昔ながらの固めプリンと、<br>
+        香り豊かなコーヒーをお楽しみください。
+      </p>
+    </section>
+
+    <!-- お店のメニュー -->
+    <section id="menu">
+      <h2>お店のメニュー</h2>
+
+      <img
+        class="photo"
+        src="images/③コーヒー.png"
+        alt="喫茶こもれびのブレンドコーヒー"
+        loading="lazy"
+      >
+
+      <h3>ブレンドコーヒー</h3>
+      <p class="description">
+        香り高い豆を丁寧に淹れた、<br>
+        こだわりの一杯。
+      </p>
+    </section>
+
+    <!-- お店のこだわり -->
+    <section id="about">
+      <h2>お店のこだわり</h2>
+
+      <p class="description">
+        昔ながらの落ち着いた空間で、<br>
+        一杯ずつ丁寧に淹れたコーヒーを。<br>
+        ゆったりとした時間をお過ごしください。
+      </p>
+    </section>
+
+    <!-- サービス -->
+    <section id="service">
+      <h2>サービスのご案内</h2>
+
+      <p class="description">
+        朝のひとときを、ゆったりと。<br>
+        モーニングセットをご用意しています。
+      </p>
+    </section>
+
+    <!-- 営業時間・アクセス -->
+    <section id="access">
+      <h2>営業時間・アクセス</h2>
+
+      <p class="info">
+        営業時間：9:00〜18:00<br>
+        定休日：毎週水曜日
+      </p>
+
+      <p class="address">
+        住所：〇〇県〇〇市〇〇町
+      </p>
+
+      <div class="map-placeholder">
+        Googleマップ
+      </div>
+
+      <!-- 住所確定後にリンクを設定 -->
+      <span class="map-button">
+        Googleマップで道順を見る
+      </span>
+
+      <p class="map-note">
+        ※ 現在は制作練習用の仮情報です。<br>
+        地図リンクは住所確定後に設定します。
+      </p>
+    </section>
+
+    <footer>
+      <p>喫茶こもれび</p>
+      <p>昔ながらの味と、くつろぎの時間。</p>
+      <p>© 喫茶こもれび</p>
+    </footer>
+
+  </main>
 </body>
 </html>
