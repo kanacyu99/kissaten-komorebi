@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="喫茶こもれび。昔ながらの味と、くつろぎの時間を。">
+
   <title>喫茶こもれび | 昔ながらの味と、くつろぎの時間。</title>
 
   <style>
@@ -113,16 +114,17 @@
       color: white;
       text-decoration: none;
       font-size: 16px;
-      text-align: center;
+
+      transition:
+        background-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
     }
 
     .map-button:hover {
       background-color: #795548;
-    }
-
-    .map-button:focus-visible {
-      outline: 3px solid #A77B53;
-      outline-offset: 3px;
+      transform: translateY(-4px);
+      box-shadow: 0 8px 18px rgba(92,64,51,0.25);
     }
 
     .map-note {
@@ -139,6 +141,82 @@
       font-size: 13px;
     }
 
+    /* -------------------------
+       アニメーション①
+       最初の画面がふんわり登場
+    ------------------------- */
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes photoFade {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .hero h1 {
+      animation: fadeInUp 1.2s ease-out both;
+    }
+
+    .hero .subtitle {
+      animation: fadeInUp 1.2s ease-out 0.25s both;
+    }
+
+    .hero .photo {
+      animation: photoFade 1.6s ease-out 0.45s both;
+    }
+
+    /* -------------------------
+       アニメーション②
+       スクロールすると登場
+    ------------------------- */
+
+    .js-animation .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition:
+        opacity 0.9s ease,
+        transform 0.9s ease;
+    }
+
+    .js-animation .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* -------------------------
+       アニメーション③
+       写真にマウスを乗せる
+    ------------------------- */
+
+    .photo-wrap {
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .photo-wrap .photo {
+      transition: transform 0.6s ease;
+    }
+
+    .photo-wrap:hover .photo {
+      transform: scale(1.035);
+    }
+
+    /* スマートフォン表示 */
     @media (max-width: 480px) {
       .container {
         padding: 48px 33px 55px;
@@ -156,7 +234,51 @@
         margin-top: 40px;
       }
     }
+
+    /* 動きを減らす設定への対応 */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .hero h1,
+      .hero .subtitle,
+      .hero .photo {
+        animation: none;
+      }
+
+      .js-animation .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .photo-wrap .photo,
+      .map-button {
+        transition: none;
+      }
+
+      .photo-wrap:hover .photo,
+      .map-button:hover {
+        transform: none;
+      }
+    }
   </style>
+
+  <script>
+    // JavaScriptが動作できる場合だけ
+    // スクロールアニメーションを有効化
+    if (
+      'IntersectionObserver' in window &&
+      !window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches
+    ) {
+      document.documentElement.classList.add(
+        'js-animation'
+      );
+    }
+  </script>
 </head>
 
 <body>
@@ -165,28 +287,35 @@
     <!-- 店名・メイン写真 -->
     <header class="hero">
       <h1>喫茶こもれび</h1>
+
       <p class="subtitle">
         昔ながらの味と、くつろぎの時間。
       </p>
-      <img
-        class="photo"
-        src="images/①懐かしの喫茶店、琥珀色のひととき.png"
-        alt="落ち着いた雰囲気のレトロ喫茶店"
-      >
+
+      <div class="photo-wrap">
+        <img
+          class="photo"
+          src="images/①懐かしの喫茶店、琥珀色のひととき.png"
+          alt="落ち着いた雰囲気のレトロ喫茶店"
+        >
+      </div>
     </header>
 
     <!-- 季節のおすすめ -->
-    <section id="seasonal">
+    <section id="seasonal" class="reveal">
       <h2>季節のおすすめ</h2>
 
-      <img
-        class="photo"
-        src="images/②コーヒーとぷりん.png"
-        alt="コーヒーとプリンのセット"
-        loading="lazy"
-      >
+      <div class="photo-wrap">
+        <img
+          class="photo"
+          src="images/②コーヒーとぷりん.png"
+          alt="コーヒーとプリンのセット"
+          loading="lazy"
+        >
+      </div>
 
       <h3>季節のプリンセット</h3>
+
       <p class="description">
         昔ながらの固めプリンと、<br>
         香り豊かなコーヒーをお楽しみください。
@@ -194,17 +323,20 @@
     </section>
 
     <!-- お店のメニュー -->
-    <section id="menu">
+    <section id="menu" class="reveal">
       <h2>お店のメニュー</h2>
 
-      <img
-        class="photo"
-        src="images/③コーヒー.png"
-        alt="喫茶こもれびのブレンドコーヒー"
-        loading="lazy"
-      >
+      <div class="photo-wrap">
+        <img
+          class="photo"
+          src="images/③コーヒー.png"
+          alt="喫茶こもれびのブレンドコーヒー"
+          loading="lazy"
+        >
+      </div>
 
       <h3>ブレンドコーヒー</h3>
+
       <p class="description">
         香り高い豆を丁寧に淹れた、<br>
         こだわりの一杯。
@@ -212,7 +344,7 @@
     </section>
 
     <!-- お店のこだわり -->
-    <section id="about">
+    <section id="about" class="reveal">
       <h2>お店のこだわり</h2>
 
       <p class="description">
@@ -223,7 +355,7 @@
     </section>
 
     <!-- サービス -->
-    <section id="service">
+    <section id="service" class="reveal">
       <h2>サービスのご案内</h2>
 
       <p class="description">
@@ -233,7 +365,7 @@
     </section>
 
     <!-- 営業時間・アクセス -->
-    <section id="access">
+    <section id="access" class="reveal">
       <h2>営業時間・アクセス</h2>
 
       <p class="info">
@@ -249,7 +381,7 @@
         Googleマップ
       </div>
 
-      <!-- 住所確定後にリンクを設定 -->
+      <!-- 現在はデザイン用の仮ボタン -->
       <span class="map-button">
         Googleマップで道順を見る
       </span>
@@ -260,12 +392,43 @@
       </p>
     </section>
 
-    <footer>
+    <footer class="reveal">
       <p>喫茶こもれび</p>
       <p>昔ながらの味と、くつろぎの時間。</p>
       <p>© 喫茶こもれび</p>
     </footer>
 
   </main>
+
+  <script>
+    // 画面内に入った要素をふんわり表示する
+    const revealElements =
+      document.querySelectorAll('.reveal');
+
+    if (
+      document.documentElement.classList.contains(
+        'js-animation'
+      )
+    ) {
+      const observer = new IntersectionObserver(
+        (entries, currentObserver) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+              currentObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: '0px 0px -20px 0px'
+        }
+      );
+
+      revealElements.forEach(element => {
+        observer.observe(element);
+      });
+    }
+  </script>
 </body>
 </html>
